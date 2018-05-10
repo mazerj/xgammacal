@@ -24,16 +24,21 @@ without some playing around.
 2. Run the `xgammacal` program. It should be on everyone's
    path, if not add `/auto/share/pypeextra` to your path:
 
-    % gammacal ConfigFile lcd outfilename
+    % xgammacal ConfigFile lcd outfilename
 
-where ConfigFile is the pypeconfig file (Config.$(HOSTNAME)).
+   where ConfigFile is the pypeconfig file (Config.$(HOSTNAME)).
 
-3. Then you can plot the results by firing up matlab and doing
+3b. Then you can then plot the results from the command line:
+
+    % xgammacalplot outfilename
+
+3b. Then you can also the results by firing up matlab and doing
 
     >> showcalib('outfilename');
 
 4. You can then optionally validate the calibration:
 
-    % gammacal ConfigFile lcd outfilename gamma
+    % xgammacal ConfigFile lcd outfilename gamma
 
-where gamma is the overall gamma value plotted by showcalib().
+   where gamma is the overall gamma value you got from the
+   plot program

@@ -14,6 +14,8 @@ install: dtp94
 	sudo cp xgammacal.sh $(INSTALLDIR)/xgammacal
 	sudo cp showcalib.m $(INSTALLDIR)
 	sudo chmod +x $(INSTALLDIR)/xgammacal
+	sudo cp xgammacalplot.py $(INSTALLDIR)/xgammacalplot
+	sudo chmod +x $(INSTALLDIR)/xgammacalplot
 
 deps:
 	sudo apt-get install libusb-dev

@@ -1,5 +1,6 @@
 *.pyc
 *.gcal
+*.gamcal
 *.cal
 *.pdf
 *.jpg
