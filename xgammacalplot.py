@@ -9,10 +9,13 @@ import matplotlib.pyplot as plt
 def estimateGamma(calfile):
 	data = np.loadtxt(calfile, comments='%')
 
+	fig = plt.figure()
+	
 	c = 'rgbk'
 	g = []
 	p0 = None
 	lines = []
+	
 	plt.subplot(1,2,1)
 		
 	for n in range(4):
@@ -23,7 +26,7 @@ def estimateGamma(calfile):
 		x = data[n::4,col]			# r,g,b,r
 		y = data[n::4,3]			# Y,Y,Y,Y
 		params, covar = curve_fit(lambda x,alpha,beta,gamma:\
-								alpha*(x**gamma)+beta, x, y, p0=p0)
+								  alpha*(x**gamma)+beta, x, y, p0=p0)
 		p0 = params
 		g.append(round(params[2], 3))
 		xx = np.linspace(min(x),max(x), 100)
@@ -57,7 +60,11 @@ def estimateGamma(calfile):
 	plt.xlabel('CIE x')
 	plt.ylabel('CIE y')		   
 	plt.title('gamut')
-		
+
+	o = calfile+'.pdf'
+	fig.savefig(o)
+	print 'plotted to: %s\n' % (o,)
+	
 	plt.show()
 	g = [g[3], g[0], g[1], g[2],]
 	return g
@@ -66,4 +73,5 @@ if __name__ == '__main__':
 	if len(sys.argv) < 2:
 		sys.stderr.write('usage: %s calibrationfile\n' % sys.argv[0])
 		sys.exit(1)
-	print 'L,R,G,B gamma: ', estimateGamma(sys.argv[1])
+	g = estimateGamma(sys.argv[1])
+	print 'L,R,G,B gamma: ', g
